@@ -1,3 +1,11 @@
+/*
+ * @Author: jian.li19 jian.li19@nio.com
+ * @Date: 2023-06-08 11:26:08
+ * @LastEditors: jian.li19 jian.li19@nio.com
+ * @LastEditTime: 2023-06-08 14:06:01
+ * @FilePath: /VINS-Fusion/vins_estimator/src/featureTracker/feature_tracker.h
+ * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
+ */
 /*******************************************************
  * Copyright (C) 2019, Aerial Robotics Group, Hong Kong University of Science and Technology
  * 
@@ -68,11 +76,11 @@ public:
     vector<cv::Point2f> predict_pts;
     vector<cv::Point2f> predict_pts_debug;
     vector<cv::Point2f> prev_pts, cur_pts, cur_right_pts;
-    vector<cv::Point2f> prev_un_pts, cur_un_pts, cur_un_right_pts;
-    vector<cv::Point2f> pts_velocity, right_pts_velocity;
-    vector<int> ids, ids_right;
-    vector<int> track_cnt;
-    map<int, cv::Point2f> cur_un_pts_map, prev_un_pts_map;
+    vector<cv::Point2f> prev_un_pts, cur_un_pts, cur_un_right_pts;  // 去畸变，归一化相机坐标系下的坐标
+    vector<cv::Point2f> pts_velocity, right_pts_velocity;  // 像素移动速度
+    vector<int> ids, ids_right;  // 特征点编号索引？
+    vector<int> track_cnt;  // 保存了当前追踪到的角点一共被多少帧图像追踪到
+    map<int, cv::Point2f> cur_un_pts_map, prev_un_pts_map;  // cur_un_pts_map中存放ids[i]和cur_un_pts[i]构成的键值对。
     map<int, cv::Point2f> cur_un_right_pts_map, prev_un_right_pts_map;
     map<int, cv::Point2f> prevLeftPtsMap;
     vector<camodocal::CameraPtr> m_camera;
